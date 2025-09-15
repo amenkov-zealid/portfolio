@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrey Menkov - Backend Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-blue': '#1e3a8a',
+                        'light-blue': '#3b82f6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        .tech-tag {
+            transition: all 0.3s ease;
+        }
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 scroll-smooth" x-data="portfolio()">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl font-bold text-dark-blue">Andrey Menkov</h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="hover:text-light-blue transition-colors">About</a>
+                    <a href="#experience" class="hover:text-light-blue transition-colors">Experience</a>
+                    <a href="#skills" class="hover:text-light-blue transition-colors">Skills</a>
+                    <a href="#contact" class="hover:text-light-blue transition-colors">Contact</a>
+                </div>
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div x-show="mobileMenuOpen" x-transition class="md:hidden mt-4 pb-4">
+                <a href="#about" @click="mobileMenuOpen = false" class="block py-2 hover:text-light-blue">About</a>
+                <a href="#experience" @click="mobileMenuOpen = false" class="block py-2 hover:text-light-blue">Experience</a>
+                <a href="#skills" @click="mobileMenuOpen = false" class="block py-2 hover:text-light-blue">Skills</a>
+                <a href="#contact" @click="mobileMenuOpen = false" class="block py-2 hover:text-light-blue">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white pt-20 pb-16">
+        <div class="max-w-6xl mx-auto px-6 py-16 text-center">
+            <div class="fade-in">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">Andrey Menkov</h1>
+                <p class="text-2xl md:text-3xl mb-8 text-blue-100">Backend Engineer & Solution Architect</p>
+                <p class="text-xl md:text-2xl mb-8 text-blue-200">13+ Years of Web Development Excellence</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contact" class="bg-white text-dark-blue px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                        Get In Touch
+                    </a>
+                    <a href="#experience" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-dark-blue transition-colors">
+                        View Experience
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="fade-in">
+                <h2 class="text-4xl font-bold text-center mb-12 text-dark-blue">About Me</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="text-lg mb-6 leading-relaxed">
+                            Solution Architect with 13 years of experience in web development, who started career as QA Automation Engineer. 
+                            I've participated in different stages of software development: automation testing, requirements review and validation, 
+                            architecture, system design, impact analysis, development, CI/CD, performance testing, deployment, and incident resolution.
+                        </p>
+                        <p class="text-lg mb-6 leading-relaxed">
+                            I'm inspired by diving into new complex systems, analyzing and decomposing their architecture/dependencies and business flows. 
+                            I understand what is O(N) and enjoy solving algorithmic problems.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="bg-blue-50 px-4 py-2 rounded-lg">
+                                <span class="text-dark-blue font-semibold">📍 Vilnius, Lithuania</span>
+                            </div>
+                            <div class="bg-blue-50 px-4 py-2 rounded-lg">
+                                <span class="text-dark-blue font-semibold">🎓 Applied Mathematics & CS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-6 text-dark-blue">Expertise Areas</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-light-blue rounded-full mr-3"></span>
+                                Microservices Architecture
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-light-blue rounded-full mr-3"></span>
+                                System Design & Documentation
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-light-blue rounded-full mr-3"></span>
+                                Payment Systems Integration
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-light-blue rounded-full mr-3"></span>
+                                Game Backend Development
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-light-blue rounded-full mr-3"></span>
+                                Team Leadership & Mentoring
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="fade-in">
+                <h2 class="text-4xl font-bold text-center mb-12 text-dark-blue">Professional Experience</h2>
+                <div class="space-y-8">
+                    
+                    <!-- Current Role -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 border-l-4 border-light-blue">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-dark-blue">Software Developer</h3>
+                                <p class="text-xl text-light-blue font-semibold">Melsoft, Vilnius</p>
+                            </div>
+                            <span class="text-gray-600 font-medium mt-2 md:mt-0">Nov 2022 — Present</span>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-lg mb-2">Project: Family Island Game Backend</h4>
+                            <p class="text-gray-700 mb-4">
+                                Server backend built as ~30 microservices communicating over GRPC, providing accounting, 
+                                monetization, and complex config management for the Family Island mobile game.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Golang</span>
+                            <span class="tech-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">MySQL</span>
+                            <span class="tech-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Redis</span>
+                            <span class="tech-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">GRPC</span>
+                            <span class="tech-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Docker</span>
+                            <span class="tech-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Elastic</span>
+                        </div>
+                    </div>
+
+                    <!-- Solution Architect -->
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-dark-blue">Solution Architect</h3>
+                                <p class="text-xl text-light-blue font-semibold">Wargaming, Vilnius</p>
+                            </div>
+                            <span class="text-gray-600 font-medium mt-2 md:mt-0">Dec 2018 — Oct 2022</span>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-lg mb-2">Project: Gaming Platform</h4>
+                            <p class="text-gray-700 mb-4">
+                                Platform providing accounting, distribution, monetization, inventories, and wallets for games. 
+                                Created system design and architecture documents, refactored legacy systems, and maintained backend services.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Elixir</span>
+                            <span class="tech-tag bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Python</span>
+                            <span class="tech-tag bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">PostgreSQL</span>
+                            <span class="tech-tag bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Docker</span>
+                            <span class="tech-tag bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Jenkins</span>
+                        </div>
+                    </div>
+
+                    <!-- Team Lead -->
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-dark-blue">Backend Team Lead</h3>
+                                <p class="text-xl text-light-blue font-semibold">Wargaming, Minsk</p>
+                            </div>
+                            <span class="text-gray-600 font-medium mt-2 md:mt-0">Aug 2016 — Dec 2018</span>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-lg mb-2">Project: eCommerce B2B Platform</h4>
+                            <p class="text-gray-700 mb-4">
+                                Led a team of 5 (3 Dev + 2 QA). Integrated with payment providers (Adyen, Qiwi, Yandex, AlfaBank). 
+                                Built order manager service with distributed transaction capabilities for in-game asset fulfillment.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Python/Twisted</span>
+                            <span class="tech-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Golang</span>
+                            <span class="tech-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">MySQL</span>
+                            <span class="tech-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">RabbitMQ</span>
+                            <span class="tech-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Redis</span>
+                        </div>
+                    </div>
+
+                    <!-- Previous roles summary -->
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-dark-blue mb-4">Earlier Career Highlights</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-lg text-light-blue mb-2">Backend Developer (2013-2016)</h4>
+                                <p class="text-gray-700 mb-2">Wargaming, Minsk</p>
+                                <p class="text-sm text-gray-600">Payment processing, 3rd party integrations (Google, Apple, Microsoft, Steam)</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg text-light-blue mb-2">QA Automation Engineer (2010-2013)</h4>
+                                <p class="text-gray-700 mb-2">Wargaming & EPAM Systems</p>
+                                <p class="text-sm text-gray-600">UI/API test automation, Selenium, Java, Python</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="fade-in">
+                <h2 class="text-4xl font-bold text-center mb-12 text-dark-blue">Technical Skills</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <!-- Programming Languages -->
+                    <div class="text-center">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-dark-blue">Languages</h3>
+                        <div class="space-y-2">
+                            <div class="tech-tag bg-blue-50 px-4 py-2 rounded-lg">Golang</div>
+                            <div class="tech-tag bg-blue-50 px-4 py-2 rounded-lg">Python</div>
+                            <div class="tech-tag bg-blue-50 px-4 py-2 rounded-lg">Elixir</div>
+                            <div class="tech-tag bg-blue-50 px-4 py-2 rounded-lg">Java</div>
+                        </div>
+                    </div>
+
+                    <!-- Databases & Infrastructure -->
+                    <div class="text-center">
+                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z"></path>
+                                <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z"></path>
+                                <path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-dark-blue">Data & Infrastructure</h3>
+                        <div class="space-y-2">
+                            <div class="tech-tag bg-green-50 px-4 py-2 rounded-lg">PostgreSQL</div>
+                            <div class="tech-tag bg-green-50 px-4 py-2 rounded-lg">MySQL</div>
+                            <div class="tech-tag bg-green-50 px-4 py-2 rounded-lg">Redis</div>
+                            <div class="tech-tag bg-green-50 px-4 py-2 rounded-lg">Docker</div>
+                            <div class="tech-tag bg-green-50 px-4 py-2 rounded-lg">RabbitMQ</div>
+                        </div>
+                    </div>
+
+                    <!-- Architecture & Tools -->
+                    <div class="text-center">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-dark-blue">Architecture & Tools</h3>
+                        <div class="space-y-2">
+                            <div class="tech-tag bg-purple-50 px-4 py-2 rounded-lg">Microservices</div>
+                            <div class="tech-tag bg-purple-50 px-4 py-2 rounded-lg">GRPC</div>
+                            <div class="tech-tag bg-purple-50 px-4 py-2 rounded-lg">Jenkins</div>
+                            <div class="tech-tag bg-purple-50 px-4 py-2 rounded-lg">Elastic</div>
+                            <div class="tech-tag bg-purple-50 px-4 py-2 rounded-lg">System Design</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="mt-12 text-center">
+                    <h3 class="text-2xl font-bold mb-6 text-dark-blue">Languages</h3>
+                    <div class="flex justify-center space-x-8">
+                        <div class="text-center">
+                            <div class="text-3xl mb-2">🇷🇺</div>
+                            <p class="font-semibold">Russian</p>
+                            <p class="text-gray-600">Native</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl mb-2">🇺🇸</div>
+                            <p class="font-semibold">English</p>
+                            <p class="text-gray-600">Professional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 gradient-bg text-white">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="fade-in">
+                <h2 class="text-4xl font-bold mb-8">Let's Connect</h2>
+                <p class="text-xl mb-12 text-blue-100">
+                    Ready to discuss your next project or explore collaboration opportunities?
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                        <div class="text-3xl mb-4">📧</div>
+                        <h3 class="text-xl font-semibold mb-2">Email</h3>
+                        <a href="mailto:andrey.menkov@pm.me" class="text-blue-200 hover:text-white transition-colors">
+                            andrey.menkov@pm.me
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                        <div class="text-3xl mb-4">📱</div>
+                        <h3 class="text-xl font-semibold mb-2">Phone</h3>
+                        <a href="tel:+37062945214" class="text-blue-200 hover:text-white transition-colors">
+                            +370 629 45214
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                        <div class="text-3xl mb-4">💼</div>
+                        <h3 class="text-xl font-semibold mb-2">LinkedIn</h3>
+                        <a href="https://www.linkedin.com/in/andrey-menkov-827a265b/" target="_blank" class="text-blue-200 hover:text-white transition-colors">
+                            Connect with me
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center space-x-6">
+                    <a href="mailto:andrey.menkov@pm.me" class="bg-white text-dark-blue px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                        Send Email
+                    </a>
+                    <a href="https://t.me/andreymenkov" target="_blank" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-dark-blue transition-colors">
+                        Telegram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p>&copy; 2025 Andrey Menkov. All rights reserved.</p>
+            <p class="text-gray-400 mt-2">Backend Engineer & Solution Architect</p>
+        </div>
+    </footer>
+
+    <script>
+        function portfolio() {
+            return {
+                mobileMenuOpen: false,
+                init() {
+                    // Intersection Observer for animations
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                            }
+                        });
+                    }, {
+                        threshold: 0.1
+                    });
+
+                    document.querySelectorAll('.fade-in').forEach(el => {
+                        observer.observe(el);
+                    });
+
+                    // Smooth scrolling for navigation links
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            const target = document.querySelector(this.getAttribute('href'));
+                            if (target) {
+                                target.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            }
+                        });
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
